@@ -1,16 +1,19 @@
 /***
  * Name: Eric Spidle
- * Course: CIS-241
+ * Course: CIS-241-01
  * Instructor: Professor Bhuse
- * Input/Output:
- * Description:
+ * Inputs: user's birthday, current date
+ * Outputs: user's age, user's max heart rate, user's target heart range
+ * Description: This program asks the user for their birthday and then the current date. It then calculates the
+ * user's age, max heart rate, and target heart range. These calculations are based on a method given by the
+ * American Heart Association (this is not professional medical advice at all please consult a doctor for that)
  ***/
 #include <stdio.h>
-#include <string.h>
+#include <string.h> // libs needed for program
 #include <stdlib.h>
 
-#define SIZE 12
-#define MAX_DATA_SIZE 5
+#define SIZE 12 // macro defining how big the size should be for a string
+#define MAX_DATA_SIZE 5 // max size of the date data string
 
 // struct to hold date data for both user's birthday and the current date
 struct Date {
@@ -34,16 +37,18 @@ enum DateData {
     YEAR
 };
 
+/*** Function Prototypes ***/
 void promptUser(char user [],char current[]);
 void parseDate(char dateString[], struct Date* date);
 void assignDates(int data, enum DateData partOfDate, struct Date* date);
 int decideUserAge(int uday, int umonth, int uyear, int cday, int cmonth, int cyear);
 void calculateStats(struct Person *person);
 void printResults(int age, int maxHeartRate, double targetHeartRangeMin, double targetHeartRangeMax);
+
 /**
- * @brief
+ * @brief The main function of the program this executes and calls all other functions
  *
- * @return int
+ * @return int returns a zero if the program terminated successfully
  */
 int main(){
 
@@ -52,6 +57,7 @@ int main(){
     struct Date currentDate = {.day = 0, .month = 0, .year = 0};
     char userBirthdayString[SIZE];
     char currentDateString[SIZE];
+
     printf("-------------~Target Heart Rate Calculator~-------------\n");
     promptUser(userBirthdayString, currentDateString);
     parseDate(currentDateString, &currentDate);
@@ -63,10 +69,10 @@ int main(){
 }
 
 /**
- * @brief
+ * @brief This functions purpose is to prompt the user to enter both their birthday and the current day
  *
- * @param user
- * @param current
+ * @param user - the string meant to hold the user's bday
+ * @param current - the string meant to hold the current date
  */
 void promptUser(char user[] , char current[]){
     printf("Enter your birthday in the format MM/DD/YYYY: ");
@@ -76,10 +82,10 @@ void promptUser(char user[] , char current[]){
 }
 
 /**
- * @brief
- *
- * @param dateString
- * @param date
+ * @brief This function parses the date passed in and then assigns to a Date struct the
+ * parsed day, month, and year
+ * @param dateString - the string of chars to be parsed
+ * @param date - the struct to assign the data to
  */
 void parseDate(char dateString[], struct Date* date){
     char holdDate[MAX_DATA_SIZE] = "";
@@ -99,11 +105,11 @@ void parseDate(char dateString[], struct Date* date){
 }
 
 /**
- * @brief
- *
- * @param data
- * @param partOfDate
- * @param date
+ * @brief This function assigns a value to either the day, month or year field of
+ * a date struct it decides based on an enum passed into the function
+* @param data - the value to be assigned
+ * @param partOfDate - the enum that specifies which field should be assigned the data value
+ * @param date - a date struct that has its fields assigned
  */
 void assignDates(int data, enum DateData partOfDate, struct Date* date){
     switch(partOfDate){
@@ -122,15 +128,15 @@ void assignDates(int data, enum DateData partOfDate, struct Date* date){
 }
 
 /**
- * @brief
+ * @brief This function calculates the user's age based on the user's birthday and the current date
  *
- * @param uday
- * @param umonth
- * @param uyear
- * @param cday
- * @param cmonth
- * @param cyear
- * @return int
+ * @param uday - the day of the user's birthday
+ * @param umonth - the month of the user's birthday
+ * @param uyear - the year of the user's birthday
+ * @param cday - the current day
+ * @param cmonth - the current month
+ * @param cyear - the current year
+ * @return int the user's age based on all of the parameters specifed aboves
  */
 int decideUserAge(int uday, int umonth, int uyear, int cday, int cmonth, int cyear){
     if(umonth < cmonth){
@@ -151,9 +157,9 @@ int decideUserAge(int uday, int umonth, int uyear, int cday, int cmonth, int cye
 }
 
 /**
- * @brief
- *
- * @param user
+ * @brief This function calculates the max heart rate and target heart rate range as specifed by the
+ * AHA referenced in the homework doc
+ * @param user - the user struct to be modifed with calculations
  */
 void calculateStats(struct Person *user){
     user->maxHeartRate = 220 - user->age;
@@ -162,12 +168,12 @@ void calculateStats(struct Person *user){
 }
 
 /**
- * @brief
- *
- * @param age
- * @param maxHeartRate
- * @param targetHeartRangeMin
- * @param targetHeartRangeMax
+ * @brief This function is responsible for printing the results to the user after all the proper calculations
+ * have been done.
+ * @param age - the user's age that will be printed
+ * @param maxHeartRate - the max heart rate allowed for the user based on age
+ * @param targetHeartRangeMin - the lower bound of the user's target heart rate range
+ * @param targetHeartRangeMax - the upper bound of the user's target heart rate range
  */
 void printResults(int age, int maxHeartRate, double targetHeartRangeMin, double targetHeartRangeMax)
 {
