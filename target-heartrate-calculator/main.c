@@ -32,8 +32,8 @@ struct Person {
 
 // enum for switch case when assigning dates
 enum DateData {
-    DAY,
     MONTH,
+    DAY,
     YEAR
 };
 
@@ -90,7 +90,7 @@ void promptUser(char user[] , char current[]){
 void parseDate(char dateString[], struct Date* date){
     char holdDate[MAX_DATA_SIZE] = "";
     int holdDateIndex = 0;
-    enum DateData partOfDate = DAY;
+    enum DateData partOfDate = MONTH;
      for(int i=0; i <= strlen(dateString); i++){
         if(dateString[i] == '/' || i == (strlen(dateString))){
             assignDates(atoi(holdDate), partOfDate, date);
