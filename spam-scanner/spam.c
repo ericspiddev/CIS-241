@@ -17,6 +17,7 @@
 
 void getUserEmail(char []);
 int scoreEmail(char *spam[], char email[]);
+void printScore(int score);
 
 char *spam[]  = {
     "as seen on", "buy",
@@ -46,7 +47,7 @@ int main(void)
     printf("Enter an email message to be graded for spam ");
     getUserEmail(userEmail);
     int score = scoreEmail(spam, userEmail);
-    printf("Score is %d\n", score);
+    printScore(score);
     return 0;
 }
 
@@ -64,7 +65,9 @@ void getUserEmail(char email [])
         if(c == '\n') // if newline break
             break;
         else
+        {
             email[i++] = tolower(c); // lower case everything for comparison
+        }
     }
 }
 
@@ -94,4 +97,26 @@ int scoreEmail(char *spam[], char email[])
         strcpy(emailCopy, email);
     }
     return score;
+}
+
+/**
+ * @brief This prints to the user the likelihood that the message they received is spam or not
+ *
+ * @param score the number of spam phrases that were detected
+ */
+void printScore(int score)
+{
+    printf("%d spam phrases detected\n", score);
+    if(score < 4)
+    {
+        printf("This is probably not spam\n");
+    }
+    else if(score < 10)
+    {
+        printf("There is a good chance this is spam\n");
+    }
+    else
+    {
+        printf("This is almost certainly spam\n");
+    }
 }

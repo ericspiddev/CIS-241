@@ -18,7 +18,7 @@ void programStart();
 int testPalindrome(char string[]); // function prototypes
 void getUserString(char str[]);
 void results(char str[]);
-
+ 
 /**
  * @brief -The main execution and entry point of the program that calls all the functions
  *
@@ -26,10 +26,16 @@ void results(char str[]);
  */
 int main()
 {
-
     char userString[MAX_SIZE] = ""; // init string
     programStart();
     getUserString(userString);
+    printf("%s ", userString);
+    if (testPalindrome(userString) == 1 )
+    {
+        printf("is a palindrome\n");
+    }
+    else
+        printf("is not a palindrome\n");
     return 0;
 }
 
@@ -41,7 +47,7 @@ void programStart()
 {
     printf("-----------~~~Palindrome Checker~~~-----------\n");
     printf("Enter a string to test if it is a palindrome(50 char max)\n"); // prompts
-    printf("Space and punctuation will be ignored\n");
+    printf("Space and punctuation will be ignored ");
 }
 /**
  * @brief this recursive function calls itself to check and see if the passed in string by the user

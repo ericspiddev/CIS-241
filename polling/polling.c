@@ -88,7 +88,10 @@ int  pollUser(int res[TOPIC_NUM][MAX_RATING], char** topics)
  */
 void printResults(int res[TOPIC_NUM][MAX_RATING], char** topics, int count)
 {
-    int max, min, mindex, maxdex = 0; // used for min and max calculations
+    int max =9;
+    int min =0;
+    int  mindex = 0;
+    int maxdex = 0; // used for min and max calculations
     printf("\t\t\t\t==========Polling Results==========\n");
     printf("\t\t");
     for(int l =1; l <=10; l++){
