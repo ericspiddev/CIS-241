@@ -4,8 +4,8 @@
  * Instructor: Professor Bhuse
  * Inputs: A unsigned integer value
  * Outputs: The input number in binary and then the reverse of that number
- * Description: This program prompts the user to enter a integer number and then 
- * prints the binary version of that number to the user. This number is then printed again 
+ * Description: This program prompts the user to enter a integer number and then
+ * prints the binary version of that number to the user. This number is then printed again
  * this time reversing the bits. So user input of 10 would give:(1010) ===> (0101)
  */
 #include<stdio.h>
