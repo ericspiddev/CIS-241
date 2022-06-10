@@ -15,8 +15,8 @@
 #define READ "r"
 #define FILENAME "records.dat" // macros used for easily changing file, record numbers, and formatting
 #define NUM_RECORDS 8
-#define HEADER "%-10s\t%-20s\t%-10s\t%-4s\n"
-#define FORMATSTRING "%-10d\t%-20s\t%-10d\t%5.2f\n"
+#define HEADER "%-10s\t%-20s\t%-10s\t%-4s\n" //header specifier string
+#define FORMATSTRING "%-10d\t%-20s\t%-10d\t%5.2f\n" // each record entry specifier string
 
 
 //record data to be added to the file
@@ -28,52 +28,51 @@ double cost[NUM_RECORDS] = {57.98, 11.99, 11.00, 79.50, 99.99, 6.99, 21.50, 7.50
 FILE* openFile(char fileName[], char mode[]);
 void printHeader(FILE* fptr);
 int checkFilePtr(FILE* fptr); // function prototypes
-void printResults(FILE* fptr);
+void printRecords(FILE* fptr);
 
 /**
- * @brief
- *
- * @return int
+ * @brief the main function of the program that executes the other fxns
+ * @return int- returns 0 when program is done with execution
  */
 int main(void)
 {
     FILE* fptr = openFile(FILENAME, WRITE);
     printHeader(fptr);
-    printResults(fptr);
+    printRecords(fptr);
     fclose(fptr);
 }
 
 /**
- * @brief
+ * @brief - this function opens a file and returns the file pointer
  *
- * @param fileName
- * @param mode
- * @return FILE*
+ * @param fileName - The name (or path) of the file to be opened
+ * @param mode - what mode the file should be opened in (write, read, append...)
+ * @return FILE* - the file pointer that references the file just opened
  */
 FILE* openFile(char fileName[], char mode[])
 {
-    return fopen(fileName, mode);
+    return fopen(fileName, mode); // return the file
 }
 
 /**
- * @brief
+ * @brief -this prints the header row into the file for the rest of the data to follow suit
  *
- * @param fptr
+ * @param fptr - the file to write the header into
  */
 void printHeader(FILE* fptr)
 {
-    if(checkFilePtr(fptr) == 1)
+    if(checkFilePtr(fptr) == 1) // if fptr is not null
     {
-        fprintf(fptr, HEADER, "Record #", "Tool name", "Quantity", "Cost");
+        fprintf(fptr, HEADER, "Record #", "Tool name", "Quantity", "Cost"); // print the header to the file
     }
 }
 
 /**
- * @brief
+ * @brief - this prints the records to file in each row
  *
- * @param fptr
+ * @param fptr - the file to print the data too.
  */
-void printResults(FILE* fptr)
+void printRecords(FILE* fptr)
 {
     if(checkFilePtr(fptr) == 1)
     {
@@ -86,10 +85,11 @@ void printResults(FILE* fptr)
 }
 
 /**
- * @brief
+ * @brief - Checks the fptr to see if it poinmts to a file or
+ * if the fptr is null
  *
- * @param fptr
- * @return int
+ * @param fptr - the fptr to be checked
+ * @return int - return 1 if the fptr is not null and 0 if it is null
  */
 int checkFilePtr(FILE* fptr)
 {
