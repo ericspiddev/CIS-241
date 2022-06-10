@@ -61,6 +61,8 @@ void printBinary(unsigned int num)
  */
 void reverseBits(unsigned int num)
 {
+    if(num == 0)
+        printf("%d", 0);
     while(num > 0) // while we are bigger than 0
     {
         printf("%d", num & 1); // print num & with the 1's place
