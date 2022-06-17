@@ -1,0 +1,9 @@
+#!/bin/bash
+PERCENT=$1
+RATE=`echo "$PERCENT / 100" | bc -l`
+TERM=12
+INITIAL=100
+
+echo "Calculating the future value of 100.00 at a rate of ${PERCENT}% for a term of twelve months..."
+VALUE=`echo "${INITIAL} * (1 + ${RATE}/(${TERM}))^${TERM}"| bc -l`
+echo "Value is ${VALUE}"

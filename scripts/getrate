@@ -1,0 +1,3 @@
+#!/bin/bash
+read -p "Enter a rate for calcuting interest on 100.00 over 12 month term: "
+./interest $REPLY
